@@ -1,30 +1,32 @@
 from utils import es_numero_entero
 import random
-def buscarNumero(vector,numero):
-    for num in vector:
-        if num == numero:
-            return True
-    return False
+from rich.console import Console
+
+console = Console()
+
+def buscarNumero(vector, numero):
+    for i in range(len(vector)):
+        if vector[i] == numero:
+            return i
+    return -1
+
 def adivinar_numero():
-    intentos =3;
-    g=0;
-    tamaño=es_numero_entero(input("Digite el tamaño del vector\n"))
-    vector=[random.randint(0,100) for i in range(tamaño)]
-    print(" ")
-    print("Tiene 3 intentos para adivinar el numero")
+    intentos = 3
+    tamaño = es_numero_entero(console.input("[bold blue]Digite el tamaño del vector\n[bold blue]"))
+    vector = [random.randint(0, 101) for i in range(tamaño)]
+    console.print(" ")
+    console.print("[bold yellow]Tiene 3 intentos para adivinar el número[bold yellow]")
     for _ in range(intentos):
-        numero = es_numero_entero(input("Digite un numero\n"))
-        if (buscarNumero(vector, numero)):
-            print("¡Felicidades!, el numero está en el vector")
+        numero = es_numero_entero(console.input("[bold magenta]Digite un número\n[bold magenta]"))
+        indice = buscarNumero(vector, numero)
+        if indice != -1:
+            console.print(f"[italic green]¡Felicidades!, el número está en el índice {indice}[italic green]")
             break
         else:
-            print("Lo siento! el numero no está en el vector")
+            console.print("[italic red]Lo siento! el número no está en el vector[italic red]")
     else:
-            print("¡lo siento, pero no adivinaste el numero!")
-    for i in range(len(vector)):
+        console.print("[italic gray]¡Lo siento, pero no adivinaste el número![italic gray]")
+    console.print(f"[bold blue]El vector es: {vector}")
 
-        print(vector)
-        break
-
-if(__name__=="__main__"):
+if __name__ == "__main__":
     adivinar_numero()

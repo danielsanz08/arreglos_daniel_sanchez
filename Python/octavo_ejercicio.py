@@ -1,5 +1,4 @@
 from utils import es_numero_entero
-from utils import es_palabra
 def eliminar_duplicados(vector=[]):
     for i in range(len(vector)):
         if vector[i] is not None:

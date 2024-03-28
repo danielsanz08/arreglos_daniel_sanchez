@@ -1,4 +1,6 @@
 from utils import es_numero_entero
+from rich.console import Console
+console = Console()
 def calcular_promedio(Lunes=[], Viernes=[]):
     cant_temperatura = len(Lunes)
     vector_nuevo = []
@@ -8,21 +10,21 @@ def calcular_promedio(Lunes=[], Viernes=[]):
 
 def tomaTemperatura():
     dia= ["Lunes","Viernes"]
-    cant_temperatura =es_numero_entero(input("Digita la cantidad de veces que deseen realizar la toma de temperatura por dia\n"))
+    cant_temperatura =es_numero_entero(console.input("[bold blue]Digita la cantidad de veces que deseen realizar la toma de temperatura por dia\n[bold blue]"))
     lunes=[]
     viernes=[]
-    print("Toma de temperatura del dia Lunes")
+    console.print("[code green]Toma de temperatura del dia Lunes[code green]")
     for i in range(cant_temperatura):
-        temp_lun=es_numero_entero(input(f"Digita la temperatura {i+1} \n"))
+        temp_lun=es_numero_entero(console.input(f"[bold yellow]Digita la temperatura {i+1} \n[bold yellow]"))
         lunes.append(temp_lun)
-    print("Toma de temperatura del dia Viernes")
+    console.print("[code magenta]Toma de temperatura del dia Viernes[code magenta]")
     for i in range(cant_temperatura):
-        temp_viernes=es_numero_entero(input(f"Digita la temperatura {i+1} \n"))
+        temp_viernes=es_numero_entero(console.input(f"[bold blue]Digita la temperatura {i+1} \n[bold blue]"))
         viernes.append(temp_viernes)
     nuevo_vector= calcular_promedio(lunes, viernes)
-    print("promedio de las temperaturas de Lunes y Viernes:")
+    console.print("[italic blue]promedio de las temperaturas de Lunes y Viernes:[italic blue]")
     for i in range(len(dia)):
-        print(f"Promedio del dia {dia[i]} : {nuevo_vector[i]} °C ")
+        console.print(f"[italic blue]Promedio del dia {dia[i]} : {nuevo_vector[i]} °C [italic blue]")
 
 
 

@@ -1,24 +1,26 @@
 import random
 from utils import es_numero_entero
+from rich.console import Console
+console = Console()
 def calcular_frecuencia(letras=[]):
     frecuencia=[0]*26
     for letra in letras:
         frecuencia[ord(letra) - ord('a')] +=1
-    print("La frecuencia de cada caracter: ")
+    console.print("[bold blue]La frecuencia de cada caracter: [bold blue]")
     for i in range(len(frecuencia)):
-        print(chr(ord('a') + i)+": "+str(frecuencia[i]))
+        console.print(f"[bold red]{chr(ord('a') + i)+": "+str(frecuencia[i])}[bold red]")
 
 def cant_letras():
     letras = []
-    cantidad = es_numero_entero(input("Ingrese la cantidad de letras \n"))
+    cantidad = es_numero_entero(console.input("[italic magenta]Ingrese la cantidad de letras \n[italic magenta]"))
     for i in range(cantidad):
         letra = chr(ord('a') + int(random.random() * (ord('z') - ord('a') + 1)))
         letras.append(letra)
 
-    print("El vector es: ")
+    console.print("[italic green]El vector es: [italic green]")
     for letra in letras:
         print(letra)
-    print("\nFrecuencia de letras:  ")
+    console.print("[italic yellow]\nFrecuencia de letras:  [italic yellow]")
     calcular_frecuencia(letras)
 
 if __name__ == "__main__":
